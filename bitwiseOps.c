@@ -8,8 +8,9 @@
 	7. to print a number in binary
 */
 
-
 #include <stdio.h>
+
+#define SIZE sizeof(int) * 4
 
 int main()
 {
@@ -118,14 +119,34 @@ int main()
 		{
 			// print a number in binary
 			// check
+
+			int binary[SIZE];
+			int index = SIZE - 1;
+			int i;
 			
 			printf("Entered choice: 5\n\n");
 			
 			printf("Enter a number: ");
 			scanf("%d", &z);
+
+			while(index >= 0)
+			{
+				// storing LSB of the number into the binary array
+				binary[index] = z & 1;
+
+				index--;
+
+				// right-shifting the number z by 1
+				z >>= 1;
+			}
 			
-			printf("Binary: %d\n", z | 0);
-			
+			printf("The entered number in binary is:\n");
+
+			// printing the converted number
+			for(i = 0; i < SIZE; i++)
+			{
+				printf("%d", binary[i]);
+			}
 			
 			break;
 		}
